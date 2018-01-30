@@ -1,4 +1,4 @@
-package org.cba.api;
+package org.cba.api.internal;
 
 public class Position {
     public int x;
