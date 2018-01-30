@@ -9,7 +9,11 @@ import java.util.List;
 
 public class StandardBoard implements Board {
 
-    private HashMap<Position,Symbol> positions;
+    private HashMap<Position, Symbol> positions;
+
+    public StandardBoard(HashMap<Position, Symbol> positions) {
+        this.positions = positions;
+    }
 
     @Override
     public int getXSize() {
@@ -23,11 +27,24 @@ public class StandardBoard implements Board {
 
     @Override
     public String toString() {
-        for (int x = 0; x < getXSize(); x++) {
-            for (int y = 0; y < getYSize(); y++) {
-                Symbol symbol = positions.get(new Position(x,y));
+        String board = "------------\n";
+        for (int y = 0; y < getYSize(); y++) {
+            board += "|";
+            for (int x = 0; x < getXSize(); x++) {
+                Symbol symbol = positions.get(new Position(x, y));
+                if (symbol == null) {
+                    board += ".";
+                } else if (symbol == Symbol.CIRCLE) {
+                    board += "O";
+                } else {
+                    board += "X";
+                }
             }
+            board += "|\n";
+
         }
-        return "";
+        board += "------------";
+
+        return board;
     }
 }
